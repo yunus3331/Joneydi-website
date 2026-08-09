@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'news',
     'pages',
-    'gallery'
+    'gallery',
+    'accounts'
 ]
 
 MIDDLEWARE = [
@@ -132,3 +133,9 @@ MAILERS = {
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+}
