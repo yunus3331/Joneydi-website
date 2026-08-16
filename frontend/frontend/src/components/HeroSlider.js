@@ -62,24 +62,24 @@ export default function HeroSlider() {
 
   return (
     <>
-      <div className="mr-10 ml-50">
+      <div className="">
         <section
           onMouseEnter={()=>setIsPaused(true)}
           onMouseLeave={()=>setIsPaused(false)}
-          className="relative h-100 mt-5 overflow-hidden"
+          className="relative h-130 overflow-hidden"
         >
           <img key={slide.id} src={slide.image} alt={slide.title} className="w-full h-full object-cover rounded-4xl hero-fade"/>
           
           <div className="absolute bottom-6 left-1/2 -translate-x-1/2 w-[80%] max-w-3xl rounded-2xl bg-black/50 backdrop-blur-md border border-white/30 p-1 text-white">
-            <h2 className="text-3xl font-bold text-center">{slide.title}</h2>
-            <p className="mt-1 text-lg text-white/90 text-center">{slide.description}</p>
+            <h2 className="text-3xl text-[#FFD166] font-bold text-center">{slide.title}</h2>
+            <p className="mt-1 text-lg text-[#FFD166]/40 text-center">{slide.description}</p>
           </div>
           
-          <button onClick={previousSlide} className="group absolute left-1 top-1/2 -translate-y-1/2 w-10 h-full rounded-full shadow-md flex items-center justify-center z-10">
+          <button onClick={nextSlide} className="group absolute left-1 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full shadow-md flex items-center justify-center z-10">
             <ArrowLeft className="w-10 h-10 text-white group-hover:text-gray-400 transition" />
           </button>
 
-          <button onClick={nextSlide} className="group absolute right-1 top-1/2 -translate-y-1/2  w-10 h-full rounded-full shadow-md flex items-center justify-center z-10">
+          <button onClick={previousSlide} className="group absolute right-1 top-1/2 -translate-y-1/2  w-10 h-10 rounded-full shadow-md flex items-center justify-center z-10">
             <ArrowRight className="w-9 h-9 text-white group-hover:text-gray-400 transition" />
           </button>
         </section>
