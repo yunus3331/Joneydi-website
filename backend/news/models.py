@@ -8,6 +8,8 @@ class News(models.Model):
     image=models.ImageField(upload_to='news/')
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now=True)
+    show_in_hero = models.BooleanField(default=False)
+    show_in_newsdesk = models.BooleanField(default=False)
 
 class Comment(models.Model):
     news = models.ForeignKey(

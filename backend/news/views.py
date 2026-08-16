@@ -14,6 +14,28 @@ def news_list(request):
     serializer = NewsSerializer(news, many=True)
 
     return Response(serializer.data)
+@api_view(['GET'])
+def hero_news(request):
+    news = News.objects.filter(
+        show_in_hero=True
+    ).order_by(
+        '-created_at'
+    )[:5]
+
+    serializer = NewsSerializer(news, many=True)
+
+    return Response(serializer.data)
+@api_view(['GET'])
+def newsdesk_news(request):
+    news = News.objects.filter(
+        show_in_newsdesk=True
+    ).order_by(
+        '-created_at'
+    )[:4]
+
+    serializer = NewsSerializer(news, many=True)
+
+    return Response(serializer.data)
 
 @api_view(['GET'])
 def news_detail(request, id):
