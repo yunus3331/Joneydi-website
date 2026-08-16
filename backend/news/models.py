@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 # Create your models here.
 class News(models.Model):
     title=models.CharField(max_length=200)
+    summary = models.CharField(max_length=300)
     content=models.TextField()
     image=models.ImageField(upload_to='news/')
     created_at=models.DateTimeField(auto_now_add=True)
