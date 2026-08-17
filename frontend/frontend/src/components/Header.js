@@ -11,7 +11,7 @@ export default function Header() {
       <div className="flex items-center justify-between px-8 py-1">
         <div className="flex items-center gap-3">
           <Image src="/jahad.png" alt="لوگوی قرارگاه جهادی شهید جنیدی" width={55} height={55}/>
-          <h1>قــرارگاه جهادی شهید جنیدی</h1>
+          <h1 className="font-black">قــرارگاه جهادی شهید جنیدی</h1>
         </div>
         
 
