@@ -1,5 +1,6 @@
 import HeroSlider from "@/components/HeroSlider";
 import NewsDesk from "@/components/NewsDesk";
+import GalleryPreview from "@/components/GalleryPreview";
 
 
 
@@ -24,6 +25,7 @@ export default function Home() {
         </div>
       </div>
       <NewsDesk/>
+      <GalleryPreview/>
     </main>
   );
 }
