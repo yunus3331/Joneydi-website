@@ -1,5 +1,18 @@
 from django.contrib import admin
-from gallery.models import images
+from .models import Gallery, GalleryImage
 
-admin.site.register(images)
-# Register your models here.
+
+class GalleryImageInline(admin.TabularInline):
+    model = GalleryImage
+    extra = 1
+
+
+@admin.register(Gallery)
+class GalleryAdmin(admin.ModelAdmin):
+    list_display = ('title', 'created_at')
+    inlines = [GalleryImageInline]
+
+
+@admin.register(GalleryImage)
+class GalleryImageAdmin(admin.ModelAdmin):
+    list_display = ('gallery', 'id')
