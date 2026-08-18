@@ -10,7 +10,7 @@ from .serializers import NewsSerializer, CommentSerializer
 
 @api_view(['GET'])
 def news_list(request):
-    news = News.objects.all()
+    news = News.objects.all().order_by('-created_at')[:50]
     serializer = NewsSerializer(news, many=True)
 
     return Response(serializer.data)

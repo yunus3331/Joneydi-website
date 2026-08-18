@@ -1,6 +1,7 @@
 "use client";
 
 import NewsHero from "@/components/NewsHero";
+import LatestNews from "@/components/LatestNews";
 import { useEffect, useState } from "react";
 
 export default function news(){
@@ -16,6 +17,9 @@ export default function news(){
           });
       }, []);
     return(
+      <div>
         <NewsHero/>
+        <LatestNews/>\
+      </div>
     )
 }
