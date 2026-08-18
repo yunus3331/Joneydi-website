@@ -50,7 +50,7 @@ export default function NewsHero(){
         <div className={`flex ${enableTransition ? "transition-transform duration-700" : ""}`} style={{transform: `translateX(${currentIndex * 50}%)`,}}>
           {sliderNews.map((item, index) => (
             <article key={`${item.id}-${index}`} className="w-1/2 shrink-0 px-2">
-              <Link href={"/news"} className="relative group block h-80 overflow-hidden rounded-3xl">
+              <Link href={`/news/${item.id}`} className="relative group block h-80 overflow-hidden rounded-3xl">
                 <img src={`http://127.0.0.1:8000${item.image}`} className="h-full w-full object-cover"/>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                 <div className="absolute inset-0 flex items-end justify-center p-6">
