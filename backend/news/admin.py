@@ -33,6 +33,4 @@ class CommentAdmin(admin.ModelAdmin):
         "created_at",
     )
 
-    readonly_fields = (
-    
-    )
+    readonly_fields = ("news","user","created_at",)
