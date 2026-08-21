@@ -5,6 +5,8 @@ import { usePathname } from "next/navigation";
 import UserMenu from "./UserMenu";
 import { useState } from "react";
 import AuthModal from "./AuthModal";
+import { useAuth } from "@/context/AuthContext";
+
 
 
 export default function Header() {

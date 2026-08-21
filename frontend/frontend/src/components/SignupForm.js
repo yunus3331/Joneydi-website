@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useAuth } from "@/context/AuthContext";
 
 function translatePasswordError(error) {
     if (error.includes("too short")) {
@@ -20,12 +21,13 @@ function translatePasswordError(error) {
 
 export default function SignupForm({ onLogin }) {
 
-    const [username, setUsername] = useState("");
+    const [usernames, setUsernames] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [passwordConfirm, setPasswordConfirm] = useState("");
     const [error, setError] = useState("");
     const [signupSuccess, setSignupSuccess] = useState(false);
+    const {setIsLoggedIn , setUsername} = useAuth();
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (password !== passwordConfirm) {
@@ -42,8 +44,21 @@ export default function SignupForm({ onLogin }) {
                         "Content-Type": "application/json",
                     },
                     body: JSON.stringify({
-                        username: username,
+                        username: usernames,
                         email: email,
+                        password: password,
+                    }),
+                }
+            );
+            const loginResponse = await fetch(
+                "http://127.0.0.1:8000/api/token/",
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        username: usernames,
                         password: password,
                     }),
                 }
@@ -63,7 +78,13 @@ export default function SignupForm({ onLogin }) {
 
                 return;
             }
-            else if (response.ok) {
+            const loginData = await loginResponse.json(); 
+            if (response.ok) {
+                localStorage.setItem("access_token", loginData.access);
+                localStorage.setItem("refresh_token", loginData.refresh);
+                localStorage.setItem("username", usernames);
+                setIsLoggedIn(true);
+                setUsername(usernames);
                 setSignupSuccess(true);
                 return;
             }
@@ -86,7 +107,7 @@ export default function SignupForm({ onLogin }) {
                     </h2>
                 
                     <p className="mb-7 text-sm text-gray-400">
-                        حساب کاربری شما با موفقیت ایجاد شد.
+                        حساب کاربری {usernames}  با موفقیت ایجاد شد.
                     </p>
                 </div>
             ) : (
@@ -95,7 +116,7 @@ export default function SignupForm({ onLogin }) {
                         ثبت نام
                     </h2>
                     <div className="space-y-5">
-                        <input type="text" placeholder="نام کاربری" value={username} onChange={(e) => setUsername(e.target.value)} className="w-full rounded-xl bg-white/5 border border-white/10 p-3 text-white outline-none focus:border-[#FFD166]/50"/>
+                        <input type="text" placeholder="نام کاربری" value={usernames} onChange={(e) => setUsernames(e.target.value)} className="w-full rounded-xl bg-white/5 border border-white/10 p-3 text-white outline-none focus:border-[#FFD166]/50"/>
                         <input type="email" placeholder="ایمیل" value={email} onChange={(e) => setEmail(e.target.value)} className="w-full rounded-xl bg-white/5 border border-white/10 p-3 text-white outline-none focus:border-[#FFD166]/50"/>
                         <input type="password" placeholder="رمز عبور" value={password} onChange={(e) => setPassword(e.target.value)} className="w-full rounded-xl bg-white/5 border border-white/10 p-3 text-white outline-none focus:border-[#FFD166]/50"/>
                         <input type="password" placeholder="تکرار رمز عبور" value={passwordConfirm} onChange={(e) => setPasswordConfirm(e.target.value)} className="w-full rounded-xl bg-white/5 border border-white/10 p-3 text-white outline-none focus:border-[#FFD166]/50"/>
