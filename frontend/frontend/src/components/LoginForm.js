@@ -26,7 +26,7 @@ export default function LoginForm({ onSignup }) {
         }
         try {
             const response = await fetch(
-                "http://127.0.0.1:8000/api/token/",
+                `${process.env.NEXT_PUBLIC_API_URL}/api/token/`,
                 {
                     method: "POST",
                     headers: {

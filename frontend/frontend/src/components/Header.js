@@ -51,7 +51,7 @@ export default function Header() {
               درباره ما
             </Link>
             <Link href="/contact" className={pathname === "/contact"  ? "text-[#c4c4c4] hover:text-[#FFD166] transition-colors"  : "text-white hover:text-[#FFD166] transition-colors"}>
-              ارتباط با ما
+              ارتباط با تو
             </Link>
           </nav>
           <UserMenu onLoginClick={() => {setShowAuth(true) , setShowMode("login")}} onSignupClick={() => {setShowAuth(true) , setShowMode("signup")}}/>

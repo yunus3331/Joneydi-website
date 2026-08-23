@@ -1,0 +1,37 @@
+services:
+
+  db:
+    image: postgres:18
+    container_name: joneydi-db
+    environment:
+      POSTGRES_DB: joneydi
+      POSTGRES_USER: davood
+      POSTGRES_PASSWORD: 11021979Da@
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql
+
+  backend:
+    build: ./backend
+    container_name: joneydi-backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app
+    depends_on:
+      - db
+
+  frontend:
+    build: ./frontend/frontend
+    container_name: joneydi-frontend
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend/frontend:/app
+      - /app/node_modules
+    depends_on:
+      - backend
+
+volumes:
+  postgres_data:

@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 export default function news(){
     const [news, setNews] = useState([]);
     useEffect(() => {
-        fetch("http://127.0.0.1:8000/api/news/")
+        fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/news/`)
           .then((response) => response.json())
           .then((data) => {
             setNews(data);

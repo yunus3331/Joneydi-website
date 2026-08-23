@@ -9,7 +9,7 @@ export default function CommentSection({ newsId }) {
   const [commentError, setCommentError] = useState("");
 
   useEffect(() => {
-    fetch(`http://127.0.0.1:8000/api/news/${newsId}/comments/`)
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/news/${newsId}/comments/`)
       .then((response) => response.json())
       .then((data) => {
         setComments(data);
@@ -30,7 +30,7 @@ export default function CommentSection({ newsId }) {
     }
   
     let response = await fetch(
-      `http://127.0.0.1:8000/api/news/${newsId}/comments/`,
+      `${process.env.NEXT_PUBLIC_API_URL}/api/news/${newsId}/comments/`,
       {
         method: "POST",
         headers: {
@@ -52,7 +52,7 @@ export default function CommentSection({ newsId }) {
       }
   
       response = await fetch(
-        `http://127.0.0.1:8000/api/news/${newsId}/comments/`,
+        `${process.env.NEXT_PUBLIC_API_URL}/api/news/${newsId}/comments/`,
         {
           method: "POST",
           headers: {

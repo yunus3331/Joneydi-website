@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
   export default function NewsDesk() {
     const [news, setNews] = useState([]);
     useEffect(() => {
-      fetch("http://127.0.0.1:8000/api/news/newsdesk/")
+      fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/news/newsdesk/`)
         .then((response) => response.json())
         .then((data) => {
           setNews(data);
@@ -34,7 +34,7 @@ import { useEffect, useState } from "react";
         <div className="flex gap-5">
             <Link href={`/news/${news[0].id}`} className="w-2/3 group" >
                 <div className="relative overflow-hidden rounded-3xl">
-                  <img src={`http://127.0.0.1:8000${news[0].image}`} alt={news[0].title} className="w-full h-80 object-cover transition-transform duration-1000 group-hover:scale-105"/>
+                  <img src={`${process.env.NEXT_PUBLIC_API_URL}${news[0].image}`} alt={news[0].title} className="w-full h-80 object-cover transition-transform duration-1000 group-hover:scale-105"/>
                   <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black to transparent"/>
                   <div className="absolute bottom-0 right-0 left-0 p-6">
                     <h3 className="text-2xl text-white font-bold group-hover:text-[#FFD166] transition-colors duration-1000">
@@ -55,7 +55,7 @@ import { useEffect, useState } from "react";
                     className="flex gap-3 group"
                 >
                     <img
-                    src={`http://127.0.0.1:8000${item.image}`}
+                    src={`${process.env.NEXT_PUBLIC_API_URL}${item.image}`}
                     alt={item.title}
                     className="w-32 h-24 object-cover rounded-2xl"
                     />

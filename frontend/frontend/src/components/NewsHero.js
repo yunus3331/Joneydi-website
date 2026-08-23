@@ -10,7 +10,7 @@ export default function NewsHero(){
     ];
     const [currentIndex, setCurrentIndex]=useState(0);
     useEffect(() => {
-        fetch("http://127.0.0.1:8000/api/news/newsdesk/")
+        fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/news/newsdesk/`)
           .then((response) => response.json())
           .then((data) => {
             setNews(data);
@@ -51,7 +51,7 @@ export default function NewsHero(){
           {sliderNews.map((item, index) => (
             <article key={`${item.id}-${index}`} className="w-1/2 shrink-0 px-2">
               <Link href={`/news/${item.id}`} className="relative group block h-80 overflow-hidden rounded-3xl">
-                <img src={`http://127.0.0.1:8000${item.image}`} className="h-full w-full object-cover"/>
+                <img src={`${process.env.NEXT_PUBLIC_API_URL}${item.image}`} className="h-full w-full object-cover"/>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                 <div className="absolute inset-0 flex items-end justify-center p-6">
                   <h2 className="text-center text-3xl font-bold text-white transition-colors duration-500 group-hover:text-[#FFD166]">

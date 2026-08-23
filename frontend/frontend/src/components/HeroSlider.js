@@ -3,29 +3,6 @@
 import { useEffect, useState } from "react";
 import ArrowLeft from "./ArrowLeft";
 import ArrowRight from "./ArrowRight";
-/*const slides = [
-  {
-    id: 1,
-    title: "برگزاری اردوی جهادی در مناطق محروم",
-    description:
-      "گروه جهادی شهید جنیدی در ادامه فعالیت‌های خود اردوی جدیدی برگزار کرد.",
-    image: "/images/20251205_144205.jpg",
-  },
-  {
-    id: 2,
-    title: "آغاز فعالیت‌های جهادی تابستان",
-    description:
-      "فعالیت‌های جهادی مجموعه در تابستان امسال آغاز شد.",
-    image: "/images/9.jpg",
-  },
-  {
-    id: 3,
-    title: "گزارش تصویری از فعالیت‌های گروه",
-    description:
-      "گزارشی از آخرین فعالیت‌های قرارگاه جهادی شهید جنیدی.",
-    image: "/images/2.jpg",
-  },
-];*/
 
 export default function HeroSlider() {
   const [slides, setSlides] = useState([])
@@ -33,7 +10,7 @@ export default function HeroSlider() {
   const [isPaused, setIsPaused] = useState(false);
 
   useEffect(() =>{
-    fetch("http://127.0.0.1:8000/api/news/hero/")
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/news/hero/`)
     .then((response) => response.json())
     .then((data) =>{
       setSlides(data);
@@ -84,7 +61,7 @@ export default function HeroSlider() {
           onMouseLeave={()=>setIsPaused(false)}
           className="relative h-130 overflow-hidden"
         >
-          <img key={slide.id} src={`http://127.0.0.1:8000${slide.image}`} alt={slide.title} className="w-full h-full object-cover rounded-4xl hero-fade"/>
+          <img key={slide.id} src={`${process.env.NEXT_PUBLIC_API_URL}${slide.image}`} alt={slide.title} className="w-full h-full object-cover rounded-4xl hero-fade"/>
           
           <div className="absolute bottom-6 left-1/2 -translate-x-1/2 w-[80%] max-w-3xl rounded-2xl bg-black/50 backdrop-blur-md border border-white/30 p-1 text-white">
             <h2 className="text-3xl text-[#FFD166] font-bold text-center">{slide.title}</h2>

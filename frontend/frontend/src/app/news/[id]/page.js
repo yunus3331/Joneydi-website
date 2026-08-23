@@ -3,7 +3,7 @@ export default async function NewsDetail({ params }) {
     const { id } = await params;
   
     const response = await fetch(
-      `http://127.0.0.1:8000/api/news/${id}/`
+      `${process.env.INTERNAL_API_URL}/api/news/${id}/`
     );
   
     const news = await response.json();
@@ -20,7 +20,7 @@ export default async function NewsDetail({ params }) {
         </div>
         <div className="max-w-5xl mx-auto mt-10">
           <img
-            src={`http://127.0.0.1:8000${news.image}`}
+            src={`${process.env.NEXT_PUBLIC_API_URL}${news.image}`}
             alt={news.title}
             className="w-full h-[500px] object-cover rounded-4xl shadow-lg"
           />

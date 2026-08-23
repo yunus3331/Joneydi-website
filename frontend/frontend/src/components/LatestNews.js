@@ -5,7 +5,7 @@ import Link from "next/link";
 export default function LatestNews(){
     const [news, setNews]=useState([]);
     useEffect(() => {
-        fetch("http://127.0.0.1:8000/api/news/")
+        fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/news/`)
           .then((response) => response.json())
           .then((data) => {
             setNews(data);
@@ -25,7 +25,7 @@ export default function LatestNews(){
             <div className="flex flex-col gap-10 mx-10">
                 {news.map((item) =>(
                     <Link href={`/news/${item.id}`} key={item.id} className="flex gap-6 group">
-                        <img src={`http://127.0.0.1:8000${item.image}`} alt={item.title} className="w-80 h-40 object-cover rounded-3xl shadow-lg shadow-[#FFD166]/50 group-hover:shadow-xl group-hover:shadow-[#FFD166]/30 transition-shadow duration-500"/>
+                        <img src={`${process.env.NEXT_PUBLIC_API_URL}${item.image}`} alt={item.title} className="w-80 h-40 object-cover rounded-3xl shadow-lg shadow-[#FFD166]/50 group-hover:shadow-xl group-hover:shadow-[#FFD166]/30 transition-shadow duration-500"/>
                         <div>
                             <h3 className="font-bold text-2xl group-hover:text-[#FFD166] transition-colors duration-500">
                                 {item.title}

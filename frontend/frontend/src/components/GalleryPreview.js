@@ -5,7 +5,7 @@ import { useEffect,useState } from "react";
 export default function GalleryPreview() {
     const [galleries, setGalleries] = useState([]);
     useEffect(() => {
-        fetch("http://127.0.0.1:8000/api/gallery/home/")
+        fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/gallery/home/`)
           .then((response) => response.json())
           .then((data) => {
             setGalleries(data);
@@ -39,7 +39,7 @@ export default function GalleryPreview() {
                 <a href={`/gallery/${gallery.id}`}>
                 <div className="overflow-hidden rounded-3xl">
                     <img
-                    src={`http://127.0.0.1:8000${gallery.cover}`}
+                    src={`${process.env.NEXT_PUBLIC_API_URL}${gallery.cover}`}
                     alt={gallery.title}
                     className="
                         w-full
